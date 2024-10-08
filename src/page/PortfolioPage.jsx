@@ -1,6 +1,5 @@
 import Header from "../components/Header";
 import HeroPage from "../components/HeroPage";
-import Mobilebar from "../components/Mobilebar";
 
 const PortfolioPage = () => {
   return (
