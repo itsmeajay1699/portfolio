@@ -41,9 +41,27 @@
 html,
 body {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     min-width: 350px;
+    background: linear-gradient(135deg, #000000, #1f1f1f, #3d3d5c, #121212);
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
 }
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 
 .tiles {
     display: grid;
@@ -247,18 +265,12 @@ body {
 .item {
     width: 60px;
     height: 60px;
-    border-radius: 50%;
+    border-radius: 100%;
     pointer-events: all;
-}
-
-.item img {
-    width: 100%;
-    height: 100%;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
-
 
 .hero-content {
     font-family: var(--secondary-font);
@@ -312,7 +324,7 @@ body {
 
 .first h1 {
     position: relative;
-    font-size: 7vw;
+    font-size: 8vw;
     top: 99%;
     left: 50%;
     text-align: center;
@@ -322,7 +334,7 @@ body {
 
 .second h1 {
     position: relative;
-    font-size: 7vw;
+    font-size: 8vw;
     bottom: 1%;
     left: 50%;
     text-align: center;
@@ -338,4 +350,38 @@ body {
     z-index: 4;
     bottom: 0;
     overflow: hidden;
+}
+
+.content h1 {
+    font-size: 8vw;
+}
+
+.above {
+    opacity: 0.3;
+    color: grey;
+    position: absolute;
+}
+
+.below {
+    width: 20px;
+    text-wrap: nowrap;
+    overflow: hidden;
+    position: absolute;
+}
+
+.skill {
+    transform: translateX(50%);
+}
+
+
+
+.skill-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.2s;
+    opacity: 0.4;
 }
