@@ -1,0 +1,297 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --heading-font: 'Roboto', sans-serif;
+    --secondary-font: "Merriweather", serif;
+    --g1: rgb(98, 0, 234);
+    --g2: rgb(236, 64, 122);
+}
+
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: -200% center;
+    }
+}
+
+/* .tiles {
+    animation: background-pan 10s linear infinite;
+    background: linear-gradient(to right,
+            var(--g1),
+            var(--g2),
+            var(--g1));
+    background-size: 200%;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0px;
+} */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    min-width: 350px;
+}
+
+.tiles {
+    display: grid;
+    z-index: 2;
+    position: relative;
+    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.tiles.toggled {
+    animation: none;
+}
+
+.tile {
+    cursor: pointer;
+    position: relative;
+}
+
+.tile:before {
+    background-color: black;
+    content: "";
+    inset: 0.5px;
+    position: absolute;
+}
+
+.hero-img {
+    position: absolute;
+    z-index: 4;
+    bottom: 0;
+    left: 50%;
+    margin-left: -40%;
+    background-color: transparent;
+    width: 80%;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+    filter: blur(1px);
+}
+
+.header {
+    font-family: var(--heading-font);
+    width: calc(100% - 250px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 50px;
+    border-radius: 32px;
+    z-index: 3;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-me-btn {
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    isolation: isolate;
+    transition: all 0.5s ease-in;
+}
+
+.contact-me-btn button {
+    padding: 10px 30px;
+    font-size: 34px;
+    font-weight: 800;
+}
+
+.contact-me-btn-one {
+    color: transparent;
+}
+
+.contact-me-btn-two {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+    z-index: 99999;
+    filter: blur(10px);
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.8;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.list-item {
+    position: relative;
+    list-style: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.list-item.active {
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    isolation: isolate;
+    color: transparent;
+    opacity: 1;
+}
+
+.list-item:hover {
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    background-clip: text;
+    position: relative;
+    isolation: isolate;
+    color: transparent;
+    opacity: 1;
+}
+
+.list-item.active::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -100%;
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    font-family: var(--secondary-font);
+    gap: 50px;
+    align-items: flex-start;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 200px);
+}
+
+.hero-content h1 {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+
+
+.hero-content h1 span {
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: top;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    isolation: isolate;
+}
+
+.typewriter-text {
+    position: absolute;
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: top;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    isolation: isolate;
+    opacity: 1;
+    font-weight: 600;
+}
+
+.typewriter-text-bg {
+    position: absolute;
+    background-image: url(https://ik.imagekit.io/sheryians/three.js/mask_5gcMWG8mG.jpg);
+    background-size: cover;
+    background-position: top;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-clip: text;
+    isolation: isolate;
+    opacity: 1;
+    font-weight: 600;
+    filter: blur(2px);
+}
+
+.masked-text p {
+    font-size: 20px;
+    font-weight: bold;
+    background-image: url('https://static.vecteezy.com/system/resources/previews/021/102/008/original/subtle-gradient-background-with-pastel-colour-free-vector.jpg');
+    background-size: auto;
+    background-position: left;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: normal;
+    font-family: var(--heading-font);
+    letter-spacing: 1px;
+    filter: blur(0.4px);
+}
+
+.logo-container {
+    position: relative;
+    width: 20%;
+    left: 40%;
+    margin-top: 170px;
+}
+
+.item {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    pointer-events: all;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+@media (max-width:700px) {
+    .hero-content {
+        width: 100%;
+        padding: 0 50px;
+    }
+
+
+
+    .hero-content h1 {
+        font-size: 30px
+    }
+
+    .masked-text p {
+        font-size: 16px;
+    }
+}
+
+.mob-navbar {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    right: 0;
+    background-color: red;
+}
