@@ -1,72 +1,76 @@
 import gsap from "gsap";
-import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger"; // Ensure ScrollTrigger is imported
+import { useEffect, useRef } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SkillCard from "./SkillCard";
+import { skills } from "../constant";
+
 gsap.registerPlugin(ScrollTrigger);
 
 const SkillSection = () => {
-  const skills = [
-    { name: "HTML", color: "#FF5733" },
-    { name: "CSS", color: "#33FF57" },
-    { name: "JavaScript", color: "#3357FF" },
-    { name: "React", color: "#FF33A1" },
-    { name: "Node.js", color: "#33FFF5" },
-    { name: "Python", color: "#F5FF33" },
-    { name: "HTML", color: "#FF5733" },
-    { name: "CSS", color: "#33FF57" },
-    { name: "JavaScript", color: "#3357FF" },
-    { name: "React", color: "#FF33A1" },
-    { name: "Node.js", color: "#33FFF5" },
-    { name: "Python", color: "#F5FF33" },
-    { name: "HTML", color: "#FF5733" },
-    { name: "CSS", color: "#33FF57" },
-    { name: "JavaScript", color: "#3357FF" },
-    { name: "React", color: "#FF33A1" },
-    { name: "Node.js", color: "#33FFF5" },
-    { name: "Python", color: "#F5FF33" },
-  ];
+  const skillRef = useRef(null);
+  const h1Ref = useRef(null);
+  const divRef = useRef(null);
+
   useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".parallax-section",
-        start: "top top",
-        end: "bottom top",
-        scrub: 2,
-        pin: true,
-        markers: true,
-      },
-    });
+    const run = () => {
+      const skillWidth = skillRef.current.offsetWidth;
+      const windowWidth = window.innerWidth;
+      const amountToScroll = skillWidth - windowWidth;
 
-    tl.to(
-      ".below ",
-      {
-        width: "100%",
-      },
-      "a"
-    );
+      if (h1Ref.current) {
+        divRef.current.style.height = `${h1Ref.current.offsetHeight}px`;
+        console.log(`${h1Ref.current.offsetHeight}px`);
+      }
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".parallax-section",
+          start: "top top",
+          end: "+=" + amountToScroll,
+          scrub: 1,
+          pin: true,
+          markers: true,
+        },
+      });
 
-    tl.to(
-      ".skill",
-      {
-        x: "-100%",
+      tl.to(
+        ".below",
+        {
+          width: "100%",
+          duration: 1, // Duration for the width expansion
+        },
+        "a"
+      );
 
-        opacity: 1,
-      },
-      "a"
-    );
+      tl.to(
+        skillRef.current,
+        {
+          x: -amountToScroll,
+          duration: 1,
+          ease: "none",
+        },
+        "a"
+      );
+    };
+    run();
   }, []);
 
   return (
-    <section className="parallax-section h-[200vh] overflow-hidden">
+    <section className="parallax-section h-screen overflow-hidden px-[40px] md:px-[100px]">
       <div className="content relative flex flex-col items-center text-white">
-        <div className="relative w-full flex flex-col h-[250px]">
-          <h1 className="above">Skills & Expertise</h1>
+        <div ref={divRef} className="relative w-full flex flex-col boom">
+          <h1 ref={h1Ref} className="above ">
+            Skills & Expertise
+          </h1>
           <h1 className="below" style={{ width: "0%" }}>
             Skills & Expertise
           </h1>
         </div>
+
         <div>
-          <div className="flex flex-row space-x-4 w-full p-[20px] skill">
+          <div
+            className="flex flex-row space-x-4 w-full p-[20px] skill"
+            ref={skillRef}
+          >
             {skills.map((skill, index) => (
               <SkillCard key={index} skill={skill} />
             ))}
